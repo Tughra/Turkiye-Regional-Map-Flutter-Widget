@@ -82,10 +82,10 @@ class _MyHomePageState extends State<MyHomePage> {
         // TRY THIS: Try changing the color here to a specific color (to
         // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
         // change color while the other colors stay the same.
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        backgroundColor: Colors.red.shade800,
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
+        title: Text("Turkiye Regional Map",style: TextStyle(color: Colors.white),),
       ),
       body: ListView(
         // Column is also a layout widget. It takes a list of children and
@@ -104,18 +104,24 @@ class _MyHomePageState extends State<MyHomePage> {
         children: <Widget>[
           ColoredBox(color: Colors.black38,
             child: TurkeyRegionalMap.withPulseAnimation(
-              mapWidth: 500.03,
+              mapWidth: MediaQuery.sizeOf(context).width,
               selectable: true,
+              selectedRegionCallback: (TurkeyRegionType type, Offset hitOffset, Offset centerRegion) {
+                print(type);
+                print("hitOffset $hitOffset");
+                print("centerRegion $centerRegion");
+              },
+              pulseColor: Colors.white,
               pulseMaxRadius: 200,
               turkeyRegionModel: TurkeyRegionModel(
-                  showIstanbulEuropeRegion: true,
+                  showIstanbulEuropeRegion: false,
                   showIstanbulAnatoliaRegion: false,
                   selectedWidthFactor: 3.4,
                   selectedRegion: TurkeyRegionType.blackSea),
             ),
           ),
           TurkeyRegionalMap.onlyMap(
-            mapWidth: 500.03,
+            mapWidth: MediaQuery.sizeOf(context).width,
             selectable: true,
             turkeyRegionModel: TurkeyRegionModel(
                 showIstanbulEuropeRegion: false,

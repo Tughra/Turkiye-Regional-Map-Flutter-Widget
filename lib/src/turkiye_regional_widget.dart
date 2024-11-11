@@ -25,7 +25,8 @@ class TurkeyRegionalMap extends StatefulWidget {
         this.pulseColor})
       : super(key: key);
 
-  ///askdasdklaslkşdklşasklşdaslşkdlkşsadlsa
+  ///If you want to customize regional map , you can use  [turkeyRegionModel]
+  ///When you want to
   factory TurkeyRegionalMap.withPulseAnimation(
       {Key? key,
         TurkeyRegionModel? turkeyRegionModel,
