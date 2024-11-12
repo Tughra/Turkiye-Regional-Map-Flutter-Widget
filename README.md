@@ -13,8 +13,9 @@ and the Flutter guide for
 # 🇹🇷 Turkiye Regional Map Flutter Widget
 
 A widget that helps you select and mark geographic regions of Turkey.
-<img src="https://github.com/Tughra/Turkiye-Regional-Map-Flutter-Widget/raw/master/screenshots/map_gif.gif" width="300"/>
-
+<div style="display:flex; justify-content: center;">
+<img src="https://github.com/Tughra/Turkiye-Regional-Map-Flutter-Widget/raw/master/example/screenshots/map_gif.gif" width="300"/>
+</div>
 
 ## 💻 Installation
 

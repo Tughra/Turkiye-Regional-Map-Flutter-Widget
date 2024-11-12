@@ -82,6 +82,9 @@ class _MyHomePageState extends State<MyHomePage> {
           ColoredBox(color: Colors.blue.shade700,
             child: TurkeyRegionalMap.withPulseAnimation(
               mapWidth: MediaQuery.sizeOf(context).width,
+              pulseScaleCurve: Curves.easeInBack,
+              pulseFadeCurve: Curves.bounceIn,
+              pulseDuration: Duration(milliseconds: 900),
               selectable: true,
               selectedRegionCallback: (TurkeyRegionType type, Offset hitOffset, Offset centerRegion) {
                 print(type);

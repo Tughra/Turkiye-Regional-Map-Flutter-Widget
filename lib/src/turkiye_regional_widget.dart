@@ -7,6 +7,9 @@ class TurkeyRegionalMap extends StatefulWidget {
   final TurkeyRegionModel? turkeyRegionModel;
   final void Function(Offset)? selectedRegionCenter;
   final OnSelectRegionCallBack? selectedRegionCallback;
+  final Duration? pulseDuration;
+  final Curve? pulseScaleCurve;
+  final Curve?  pulseFadeCurve;
   final double width;
   final double pulseWidth;
   final bool showPulse;
@@ -17,6 +20,9 @@ class TurkeyRegionalMap extends StatefulWidget {
       {Key? key,
         required this.width,
         required this.showPulse,
+        this.pulseDuration,
+        this.pulseScaleCurve,
+        this.pulseFadeCurve,
         this.selectedRegionCenter,
         this.selectedRegionCallback,
         this.pulseWidth = 32,
@@ -34,12 +40,18 @@ class TurkeyRegionalMap extends StatefulWidget {
         OnSelectRegionCallBack? selectedRegionCallback,
         required double mapWidth,
         required bool selectable,
+        Duration? pulseDuration,
+        Curve? pulseScaleCurve,
+        Curve?  pulseFadeCurve,
         Color? pulseColor,
         double pulseMaxRadius = 32}) {
     return TurkeyRegionalMap._(
       key: key,
       showPulse: true,
       width: mapWidth,
+      pulseDuration: pulseDuration,
+      pulseFadeCurve: pulseFadeCurve,
+      pulseScaleCurve: pulseScaleCurve,
       turkeyRegionModel: turkeyRegionModel,
       selectedRegionCenter: selectedRegionCenter,
       selectedRegionCallback: selectedRegionCallback,
@@ -127,6 +139,9 @@ class _TurkeyRegionalMapState extends State<TurkeyRegionalMap> {
                 top: (hitPosition?.dy ?? 0) - pulseSize / 2,
                 child: IgnorePointer(
                   child: PulseAnimation(
+                    scaleCurve: widget.pulseScaleCurve,
+                    fadeCurve: widget.pulseFadeCurve,
+                    duration: widget.pulseDuration,
                     color: widget.pulseColor,
                     showAnimation: hitPosition != null,
                     size: pulseSize,
@@ -160,9 +175,12 @@ class _TurkeyRegionalMapState extends State<TurkeyRegionalMap> {
   }
 }
 class PulseAnimation extends StatefulWidget {
-  const PulseAnimation({super.key, required this.size,this.color,this.showAnimation=false});
+  const PulseAnimation({super.key, required this.size,this.color,this.showAnimation=false,this.duration,this.scaleCurve,this.fadeCurve});
   final double size;
   final Color? color;
+  final Duration? duration;
+  final Curve? scaleCurve;
+  final Curve? fadeCurve;
   final bool showAnimation;
 
   @override
@@ -180,12 +198,12 @@ class _PulseAnimationState extends State<PulseAnimation> with TickerProviderStat
     super.initState();
 
     _controller = AnimationController(
-      duration: const Duration(seconds: 2),
+      duration: widget.duration??const Duration(seconds: 2),
       vsync: this,
     );
 
-    _scaleAnimation = Tween<double>(begin: 0, end: 1).animate(_controller);
-    _fadeAnimation = Tween<double>(begin: 1, end: 0).animate(_controller);
+    _scaleAnimation = Tween<double>(begin: 0, end: 1).animate(CurvedAnimation(parent: _controller, curve:widget.scaleCurve??Curves.linear ));
+    _fadeAnimation = Tween<double>(begin: 1, end: 0).animate(CurvedAnimation(parent: _controller, curve:widget.fadeCurve??Curves.linear ));
 
 
     if(widget.showAnimation)_controller.repeat();
