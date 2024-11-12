@@ -173,8 +173,6 @@ class TurkiyeRegionPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    debugPrint("Trigger Paint");
-
     ///Ege Bölgesi Başlangıç
     Path path_0 = Path();
     path_0.moveTo(size.width * 0.08510047, size.height * 0.5819736);
