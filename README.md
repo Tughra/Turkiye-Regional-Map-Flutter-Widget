@@ -43,7 +43,7 @@ import 'package:turkiye_regional_map/turkiye_regional_map.dart';
 ```
 
 ### If you want to pulse animation when you select a region;
-#### <font color="orange"> If you want to use the ```turkeyRegionModel``` parameter, you need to create the ```TurkeyRegionModel``` model outside of the ```TurkeyRegionalMap``` widget. Do not put the object directly into the parameter. </font>
+##### <font color="orange"> If you want to use the ```turkeyRegionModel``` parameter, you need to create the ```TurkeyRegionModel``` model outside of the ```TurkeyRegionalMap``` widget. Do not put the object directly into the parameter. </font>
 ```dart
 final regionModelPulse = TurkeyRegionModel(
     showIstanbulEuropeRegion: false,

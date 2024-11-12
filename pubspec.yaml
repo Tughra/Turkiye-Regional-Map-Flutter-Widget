@@ -1,7 +1,7 @@
 name: turkiye_regional_map
 description: "Turkiye regional map widget."
 version: 0.0.1
-homepage:
+homepage: https://github.com/Tughra/Turkiye-Regional-Map-Flutter-Widget
 
 environment:
   sdk: ^3.5.3

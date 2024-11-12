@@ -105,7 +105,7 @@ class TurkiyeRegionPainter extends CustomPainter {
               Paint()
                 ..style = PaintingStyle.fill
                 ..color = regionModel.selectedRegionColor);
-          final position = pathList[11].getBounds().center;
+          //final position = pathList[11].getBounds().center;
           selectedRegionCenter?.call(pathList[11].getBounds().center);
         case TurkeyRegionType.istanbulEurope:
           canvas.drawPath(pathList[12], paintStroke);
